@@ -13,9 +13,9 @@ const IconButton = function ({
     <Pressable
       onPress={onPress}
       style={({ pressed }) => [
-        style,
         styles.buttonContainer,
         pressed && styles.pressed,
+        style,
       ]}
     >
       <Entypo name={iconName} color={iconColor} size={18} style={styles.icon} />
@@ -35,9 +35,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     margin: 4,
     borderWidth: 1,
+    borderColor: "black",
     backgroundColor: colors.pink700,
     borderRadius: 16,
-    borderColor: "tansparent",
   },
   pressed: {
     opacity: 0.6,

@@ -11,4 +11,8 @@ export const colors = {
   gray300: "#D8D8D8",
   white500: "#F9F9F9",
   white600: "#EAF6F6",
+  black500: "#181818",
+  cream500: "#FFECEF",
+  greenGrad: "rgb(69,230,201)",
+  red200: "#ffdad9",
 };

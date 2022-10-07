@@ -4,6 +4,7 @@ import LoginScreen from "./screens/LoginScreen";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import SignupScreen from "./screens/SignupScreen";
+import AllToursScreen from "./screens/AllToursScreen";
 
 export default function App() {
   return (
@@ -12,7 +13,8 @@ export default function App() {
       <Provider store={store}>
         {/* <LoginScreen /> */}
         {/* <WelcomeScreen /> */}
-        <SignupScreen />
+        {/* <SignupScreen /> */}
+        <AllToursScreen />
       </Provider>
     </>
   );

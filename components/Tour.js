@@ -1,5 +1,4 @@
 import {
-  Image,
   View,
   StyleSheet,
   Text,
@@ -7,14 +6,22 @@ import {
   StatusBar,
   ScrollView,
 } from "react-native";
+import { useState } from "react";
 import AppText from "./common/AppText";
 import GuideCard from "./common/GuideCard";
 import Slider from "./common/Slider";
 import { colors } from "./../constants/colors";
 import ToursFeatures from "./common/TourFeatures";
 import IconButton from "./common/IconButton";
+import FavButton from "./common/FavButton";
 
 const Tour = function (props) {
+  const [liked, setLiked] = useState(false);
+
+  const onLikedPressHandler = (e) => {
+    setLiked((prevState) => !prevState);
+  };
+
   return (
     <View style={styles.rootContainer}>
       <ScrollView>
@@ -50,19 +57,18 @@ const Tour = function (props) {
         </View>
         <View style={styles.buttonContainers}>
           <IconButton
-            iconName={"shopping-cart"}
+            iconName={"shopping-bag"}
             iconColor={colors.dodgerBlue500}
-            style={{ width: "50%" }}
+            style={styles.btnBuy}
           >
             Buy-Now
           </IconButton>
-          <IconButton
-            style={{ width: "50%" }}
-            iconName={"heart-outlined"}
-            iconColor={colors.dodgerBlue500}
-          >
-            Favorite
-          </IconButton>
+          <FavButton
+            liked={liked}
+            onPress={onLikedPressHandler}
+            style={styles.btnLike}
+            iconColor={colors.white600}
+          />
         </View>
       </ScrollView>
     </View>
@@ -127,12 +133,21 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   featuresContainer: {
-    marginVertical: 15,
+    marginVertical: 22,
     marginHorizontal: 5,
   },
   buttonContainers: {
     flexDirection: "row",
     justifyContent: "center",
-    paddingHorizontal: 8,
+    paddingHorizontal: 15,
+    marginVertical: 15,
+  },
+  btnBuy: {
+    borderColor: colors.greenGrad,
+    width: "80%",
+  },
+  btnLike: {
+    borderColor: colors.greenGrad,
+    width: "20%",
   },
 });

@@ -6,6 +6,7 @@ import { store } from "./store/store";
 import SignupScreen from "./screens/SignupScreen";
 import AllToursScreen from "./screens/AllToursScreen";
 import TourScreen from "./screens/TourScreen";
+import AccountScreen from "./screens/AccountScreen";
 
 export default function App() {
   return (
@@ -16,7 +17,8 @@ export default function App() {
         {/* <WelcomeScreen /> */}
         {/* <SignupScreen /> */}
         {/* <AllToursScreen /> */}
-        <TourScreen />
+        {/* <TourScreen /> */}
+        <AccountScreen />
       </Provider>
     </>
   );

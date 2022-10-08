@@ -5,9 +5,11 @@ import {
   Text,
   Platform,
   StatusBar,
+  Pressable,
 } from "react-native";
 import AccountDetails from "./other/AccountDetails";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { colors } from "./../constants/colors";
 
 const Account = function (props) {
   return (
@@ -23,7 +25,12 @@ const Account = function (props) {
         <Text>doomdexter07@hotmail.com</Text>
       </View>
       <AccountDetails />
-      <View style={styles.buttonContainer}>
+      <Pressable
+        style={({ pressed }) => [
+          styles.buttonContainer,
+          pressed && styles.preesed,
+        ]}
+      >
         <Text style={styles.iconText}>Logout</Text>
         <MaterialCommunityIcons
           name="logout"
@@ -31,7 +38,7 @@ const Account = function (props) {
           color={"blue"}
           style={styles.icon}
         />
-      </View>
+      </Pressable>
     </View>
   );
 };
@@ -72,6 +79,7 @@ const styles = StyleSheet.create({
     padding: 8,
     marginHorizontal: 8,
     marginVertical: 14,
+    backgroundColor: colors.greenGrad,
   },
   icon: {
     marginLeft: 10,
@@ -79,5 +87,9 @@ const styles = StyleSheet.create({
   iconText: {
     textTransform: "uppercase",
     fontWeight: "bold",
+    color: colors.white600,
+  },
+  preesed: {
+    opacity: 0.8,
   },
 });

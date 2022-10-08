@@ -21,7 +21,7 @@ const AccountDetails = function () {
               <Text style={styles.title}>{item.title}</Text>
             </View>
             <MaterialCommunityIcons
-              name="menu-right"
+              name="menu-right-outline"
               color={"dodgerblue"}
               size={30}
             />

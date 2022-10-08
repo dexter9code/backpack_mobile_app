@@ -2,8 +2,19 @@ import { View, ImageBackground, StyleSheet, Image } from "react-native";
 import IconButton from "./common/IconButton";
 import { LinearGradient } from "expo-linear-gradient";
 import { colors } from "./../constants/colors";
+import { useNavigation } from "@react-navigation/native";
 
 const Overview = function () {
+  const navigation = useNavigation();
+
+  const onLoginPressHandler = (e) => {
+    navigation.navigate("login");
+  };
+
+  const onSignupPressHandler = (e) => {
+    navigation.navigate("signup");
+  };
+
   return (
     <LinearGradient
       colors={["#5ee77b", "#43e79b", "#33e5b5", "#3de2ca", "#58ded8"]}
@@ -27,6 +38,7 @@ const Overview = function () {
               iconColor={"#f7f7f7"}
               iconName="login"
               style={styles.btn}
+              onPress={onLoginPressHandler}
             >
               Login
             </IconButton>
@@ -34,6 +46,7 @@ const Overview = function () {
               iconColor={"#f7f7f7"}
               iconName="add-user"
               style={styles.btn}
+              onPress={onSignupPressHandler}
             >
               Sign-up
             </IconButton>

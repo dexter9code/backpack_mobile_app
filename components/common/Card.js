@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import AppText from "./AppText";
 import { colors } from "./../../constants/colors";
+import { useNavigation } from "@react-navigation/native";
 
 const Card = function ({
   title,
@@ -17,6 +18,10 @@ const Card = function ({
   rating,
   duration,
 }) {
+  const navigation = useNavigation();
+
+  const onPressHandler = (e) => navigation.navigate("tour");
+
   return (
     <SafeAreaView style={styles.rootContainer}>
       <Pressable
@@ -24,6 +29,7 @@ const Card = function ({
           styles.rootContainer,
           pressed && styles.clicked,
         ]}
+        onPress={onPressHandler}
       >
         <ScrollView>
           <View style={styles.card}>

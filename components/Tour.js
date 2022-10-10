@@ -37,6 +37,7 @@ const Tour = function ({ tourData }) {
 
         {tourData?.guides.map((guide) => (
           <GuideCard
+            key={guide._id}
             name={guide.name}
             role={guide.role}
             imageUri={guide.photo}

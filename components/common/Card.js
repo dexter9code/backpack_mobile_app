@@ -38,14 +38,43 @@ const Card = function ({
       >
         <ScrollView>
           <View style={styles.card}>
-            <Image style={styles.image} source={{ uri: upadatedUri }} />
+            <View style={styles.imageContainer}>
+              <Image
+                style={styles.overlayImage}
+                source={{ uri: upadatedUri }}
+              />
+            </View>
             <View style={styles.detailsContainer}>
-              <AppText style={styles.title}>{title}</AppText>
+              <View style={styles.iconContainer}>
+                <View style={styles.iconImageContainer}>
+                  <Image
+                    source={require("../../assets/icons/google-maps.png")}
+                    style={styles.iconImage}
+                  />
+                </View>
+                <AppText style={styles.title}>{title}</AppText>
+              </View>
               <AppText style={styles.subTitle}>₹ {price}</AppText>
             </View>
             <View style={styles.ratingContainer}>
-              <AppText style={styles.ratingText}>{rating}/5</AppText>
-              <AppText style={styles.daysText}>{duration} days</AppText>
+              <View style={styles.iconContainer2}>
+                <View style={styles.iconImageContainer2}>
+                  <Image
+                    source={require("../../assets/icons/chat.png")}
+                    style={styles.iconImage2}
+                  />
+                </View>
+                <AppText style={styles.ratingText}>{rating}/5.0</AppText>
+              </View>
+              <View style={styles.iconContainer}>
+                <View style={styles.iconImageContainer}>
+                  <Image
+                    source={require("../../assets/icons/wall-clock.png")}
+                    style={styles.iconImage}
+                  />
+                </View>
+                <AppText style={styles.daysText}>{duration} days</AppText>
+              </View>
             </View>
             <View style={styles.subContainer}>
               <AppText style={styles.descriptionText}>{description}</AppText>
@@ -69,18 +98,30 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 5,
     overflow: "hidden",
+    elevation: 3,
+  },
+  imageContainer: {
+    width: "100%",
+    height: 250,
+    overflow: "hidden",
+  },
+  overlayImage: {
+    width: "100%",
+    height: "100%",
   },
   detailsContainer: {
-    padding: 20,
+    paddingVertical: 20,
+    paddingLeft: 4,
+    paddingRight: 14,
     flexDirection: "row",
     justifyContent: "space-between",
   },
   image: {
     width: "100%",
-    height: 200,
+    height: "100%",
   },
   subTitle: {
-    color: colors.pink700,
+    color: colors.dodgerBlue500,
     fontWeight: "bold",
   },
   title: {
@@ -90,12 +131,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 8,
+    backgroundColor: colors.cream500,
   },
   descriptionText: {
     fontSize: 10,
     textTransform: "capitalize",
     textAlign: "center",
-    color: colors.gray700,
+    color: "#000",
   },
   clicked: {
     opacity: 0.9,
@@ -104,13 +146,44 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 20,
-    paddingBottom: 5,
+
+    paddingBottom: 2,
+    marginBottom: 12,
+    paddingLeft: 8,
+    paddingRight: 16,
   },
   ratingText: {
     fontSize: 12,
   },
   daysText: {
     fontSize: 12,
+  },
+  iconContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  iconImageContainer: {
+    width: 20,
+    height: 20,
+    overflow: "hidden",
+    marginRight: 5,
+  },
+  iconImage: {
+    width: "100%",
+    height: "100%",
+  },
+  iconContainer2: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  iconImageContainer2: {
+    width: 22,
+    height: 22,
+    overflow: "hidden",
+    marginRight: 5,
+  },
+  iconImage2: {
+    width: "100%",
+    height: "100%",
   },
 });

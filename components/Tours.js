@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { FlatList, View } from "react-native";
 import { getAllTours } from "../helper/tour-http";
-import { TOURS } from "./../data/Tours";
 import Card from "./common/Card";
 
 const Tours = function (props) {
@@ -23,7 +22,7 @@ const Tours = function (props) {
       renderItem={(itemData) => (
         <Card
           id={itemData.item._id}
-          title={itemData.item.title}
+          title={itemData?.item.title}
           imageUri={itemData.item.tourImage}
           price={itemData.item.price}
           description={itemData.item.summary}

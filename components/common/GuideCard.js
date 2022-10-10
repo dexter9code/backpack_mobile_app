@@ -2,24 +2,23 @@ import { View, Image, Text, StyleSheet } from "react-native";
 import IconButton from "./IconButton";
 import NormalButton from "./NormalButton";
 import { colors } from "./../../constants/colors";
+import { changeUri } from "./../../helper/changeUri";
 
 const GuideCard = function ({ name, role, imageUri }) {
+  const guidesImage = changeUri(imageUri);
   return (
     <View style={styles.rootContainer}>
       <View style={styles.guideContainer}>
         <View style={styles.imageContainer}>
-          <Image
-            source={require("../../assets/monica.jpg")}
-            style={styles.image}
-          />
+          <Image source={{ uri: guidesImage }} style={styles.image} />
         </View>
         <View style={styles.infoContainer}>
-          <Text style={styles.nameText}>Monica</Text>
-          <Text style={styles.nameText}>Lead-Guide</Text>
+          <Text style={styles.nameText}>{name}</Text>
+          <Text style={styles.nameText}>{role}</Text>
         </View>
       </View>
       <NormalButton textStyle={styles.btnText} style={styles.btn}>
-        Contact Monica
+        Contact {name.split(" ")[0]}
       </NormalButton>
     </View>
   );
@@ -53,6 +52,7 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 12,
     fontWeight: "bold",
+    textTransform: "capitalize",
   },
   infoContainer: {
     padding: 10,
@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     margin: 2,
     borderColor: colors.greenGrad,
+    minWidth: 120,
   },
   btnText: {
     textTransform: "capitalize",

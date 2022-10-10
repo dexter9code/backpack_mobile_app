@@ -1,11 +1,4 @@
-import {
-  View,
-  StyleSheet,
-  Text,
-  Platform,
-  StatusBar,
-  ScrollView,
-} from "react-native";
+import { View, StyleSheet, Text, ScrollView } from "react-native";
 import { useState } from "react";
 import AppText from "./common/AppText";
 import GuideCard from "./common/GuideCard";
@@ -14,42 +7,45 @@ import { colors } from "./../constants/colors";
 import ToursFeatures from "./common/TourFeatures";
 import IconButton from "./common/IconButton";
 import FavButton from "./common/FavButton";
+import { changeUri } from "./../helper/changeUri";
 
-const Tour = function (props) {
+const Tour = function ({ tourData }) {
   const [liked, setLiked] = useState(false);
 
   const onLikedPressHandler = (e) => {
     setLiked((prevState) => !prevState);
   };
 
+  const currentState = tourData?.location.description.split(",")[0];
+  const tourImages = tourData?.images.map((item) => changeUri(item));
+
   return (
     <View style={styles.rootContainer}>
       <ScrollView>
-        <Slider />
+        <Slider images={tourImages} />
         <View style={styles.floatContainer}>
           <Text style={styles.floatText}>
-            $ 455 {"\n"} <Text style={styles.floatSubText}>per Person</Text>
+            ₹ {tourData?.price} {"\n"}{" "}
+            <Text style={styles.floatSubText}>per Person</Text>
           </Text>
         </View>
         <View style={styles.locationContainer}>
-          <AppText style={styles.locationText}>Kathmandu,India</AppText>
+          <AppText style={styles.locationText}>{currentState},India</AppText>
           <AppText style={styles.ratingText}>4.5/5</AppText>
         </View>
         <Text style={styles.guideText}>Your Guides</Text>
 
-        <GuideCard />
-        <GuideCard />
+        {tourData?.guides.map((guide) => (
+          <GuideCard
+            name={guide.name}
+            role={guide.role}
+            imageUri={guide.photo}
+          />
+        ))}
+
         <View style={styles.summaryContaienr}>
-          <Text style={styles.guideText}>About Kathmandu</Text>
-          <Text style={styles.sumamryText}>
-            Kathmandu, Nepal's capital, is set in a valley surrounded by the
-            Himalayan mountains. At the heart of the old city’s mazelike alleys
-            is Durbar Square, which becomes frenetic during Indra Jatra, a
-            religious festival featuring masked dances. Many of the city's
-            historic sites were damaged or destroyed by a 2015 earthquake.
-            Durbar Square's palace, Hanuman Dhoka, and Kasthamandap, a wooden
-            Hindu temple, are being rebuilt.{" "}
-          </Text>
+          <Text style={styles.guideText}>About {currentState}</Text>
+          <Text style={styles.sumamryText}>{tourData?.description}</Text>
         </View>
         <Text style={styles.guideText}>Tour Features</Text>
         <View style={styles.featuresContainer}>

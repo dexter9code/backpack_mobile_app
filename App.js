@@ -11,8 +11,8 @@ export default function App() {
       <StatusBar style="dark" />
       <Provider store={store}>
         <NavigationContainer>
-          {/* <RootStack /> */}
-          <AuthStack />
+          <RootStack />
+          {/* <AuthStack /> */}
         </NavigationContainer>
       </Provider>
     </>

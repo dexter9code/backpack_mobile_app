@@ -63,7 +63,9 @@ const Login = function ({ submitHandler }) {
       <Text style={styles.titleText}>Welcome Back </Text>
 
       <View style={styles.errorContainer}>
-        <Text style={styles.errorText}>{notificaitonState?.message}</Text>
+        {notificaitonState && (
+          <Text style={styles.errorText}>{notificaitonState?.message}</Text>
+        )}
       </View>
 
       <IconInput

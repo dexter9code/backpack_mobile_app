@@ -17,10 +17,15 @@ const Card = function ({
   description,
   rating,
   duration,
+  id,
 }) {
   const navigation = useNavigation();
 
-  const onPressHandler = (e) => navigation.navigate("tour");
+  const onPressHandler = (e) => {
+    navigation.navigate("tour", { tourId: id });
+  };
+
+  const upadatedUri = imageUri.replace(/localhost:8080/gi, `192.168.1.38:8080`);
 
   return (
     <SafeAreaView style={styles.rootContainer}>
@@ -33,10 +38,7 @@ const Card = function ({
       >
         <ScrollView>
           <View style={styles.card}>
-            <Image
-              style={styles.image}
-              source={require("../../data/tour-2-1.jpg")}
-            />
+            <Image style={styles.image} source={{ uri: upadatedUri }} />
             <View style={styles.detailsContainer}>
               <AppText style={styles.title}>{title}</AppText>
               <AppText style={styles.subTitle}>₹ {price}</AppText>
@@ -63,7 +65,7 @@ const styles = StyleSheet.create({
   },
   card: {
     borderRadius: 18,
-    backgroundColor: colors.dodgerBlue500,
+    backgroundColor: colors.white600,
     marginVertical: 10,
     marginHorizontal: 5,
     overflow: "hidden",

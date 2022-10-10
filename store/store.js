@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import errorReducer from "../features/errorSlice";
+import AuthReducer from "../features/authSlice";
+import notificationReducer from "../features/notificationSlice";
 
 export const store = configureStore({
   reducer: {
-    Error: errorReducer,
+    Auth: AuthReducer,
+    Notification: notificationReducer,
   },
 });

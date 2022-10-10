@@ -30,7 +30,8 @@ const Overview = function () {
           <View style={styles.imageContainer}>
             <Image
               style={styles.image}
-              source={require("../assets/img/backpackLogo.png")}
+              source={require("../assets/img/backpack_full.png")}
+              resizeMode="contain"
             />
           </View>
           <View style={styles.buttonContainer}>
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   imageContainer: {
-    width: 400,
+    width: 200,
     height: 200,
     overflow: "hidden",
     alignSelf: "center",

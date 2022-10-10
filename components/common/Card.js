@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 18,
     backgroundColor: colors.dodgerBlue500,
-    marginVertical: 20,
+    marginVertical: 10,
     marginHorizontal: 5,
     overflow: "hidden",
   },

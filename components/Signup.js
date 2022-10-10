@@ -1,4 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
+import { useState } from "react";
 import {
   View,
   StyleSheet,
@@ -10,9 +11,73 @@ import {
 import IconButton from "./common/IconButton";
 import IconInput from "./common/IconInput";
 import { colors } from "./../constants/colors";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  hideNotification,
+  showNotification,
+} from "../features/notificationSlice";
 
-const Signup = function () {
-  const nameChangeHandler = (e) => {};
+const cond = `/^[\w._-]+[+]?[\w._-]+@[\w.-]+\.[a-zA-Z]{2,6}$/`;
+
+const Signup = function ({ pressHandler }) {
+  const dispatch = useDispatch();
+  const notificaitonState = useSelector(
+    (state) => state.Notification.notification
+  );
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const nameChangeHandler = (e) => {
+    setName(e);
+  };
+  const emailChangeHandler = (e) => {
+    setEmail(e);
+  };
+  const passwordChangeHandler = (e) => {
+    setPassword(e);
+  };
+  const confirmPasswordChangeHandler = (e) => {
+    setConfirmPassword(e);
+  };
+
+  const onSubmitHandler = (e) => {
+    if (!name || !email || !password || !confirmPassword) {
+      dispatch(
+        showNotification({
+          status: `error`,
+          message: `Please fill the input`,
+        })
+      );
+      return;
+    }
+    dispatch(hideNotification());
+
+    if (password !== confirmPassword) {
+      dispatch(
+        showNotification({
+          status: `error`,
+          message: `Password Mis-Match`,
+        })
+      );
+      return;
+    }
+    dispatch(hideNotification());
+
+    if (!email.includes("@")) {
+      dispatch(
+        showNotification({
+          status: `error`,
+          message: `Invalid Email provided`,
+        })
+      );
+      return;
+    }
+    dispatch(hideNotification());
+
+    pressHandler({ name, email, password, confirmPassword });
+  };
 
   return (
     <LinearGradient
@@ -49,6 +114,11 @@ const Signup = function () {
             </Text>
           </View>
         </View>
+        <View style={styles.errorContainer}>
+          {notificaitonState && (
+            <Text style={styles.errorText}>{notificaitonState?.message}</Text>
+          )}
+        </View>
 
         <IconInput
           iconName={`account`}
@@ -58,23 +128,27 @@ const Signup = function () {
         />
         <IconInput
           iconName={`email`}
-          onChange={nameChangeHandler}
+          onChange={emailChangeHandler}
           placeHolder={`@example.com`}
           style={styles.input}
         />
         <IconInput
           iconName={`lock`}
-          onChange={nameChangeHandler}
+          onChange={passwordChangeHandler}
           placeHolder={`Password`}
           style={styles.input}
+          EntryType={true}
         />
         <IconInput
           iconName={`lock`}
-          onChange={nameChangeHandler}
+          onChange={confirmPasswordChangeHandler}
           placeHolder={`Confrim Password`}
           style={styles.input}
+          EntryType={true}
         />
-        <IconButton style={styles.button}>Sign-up</IconButton>
+        <IconButton style={styles.button} onPress={onSubmitHandler}>
+          Sign-up
+        </IconButton>
       </KeyboardAvoidingView>
     </LinearGradient>
   );
@@ -130,5 +204,15 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: "500",
     color: colors.gray300,
+  },
+  errorContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  errorText: {
+    fontStyle: "italic",
+    fontWeight: "600",
+    color: colors.pink700,
+    fontSize: 16,
   },
 });

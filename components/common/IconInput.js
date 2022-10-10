@@ -8,18 +8,9 @@ const IconInput = function ({
   onChange,
   style,
   EntryType,
-  inputValid,
 }) {
-  const error = useSelector((state) => state.Error.error);
-
   return (
-    <View
-      style={[
-        styles.inputContainer,
-        style,
-        inputValid && inputValid.status === `error` && styles.errorContainer,
-      ]}
-    >
+    <View style={[styles.inputContainer, style]}>
       <MaterialCommunityIcons
         name={iconName}
         color={colors.gray500}

@@ -3,15 +3,55 @@ import IconButton from "./common/IconButton";
 import IconInput from "./common/IconInput";
 import { colors } from "./../constants/colors";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import {
+  hideNotification,
+  showNotification,
+} from "../features/notificationSlice";
 
-const Login = function ({
-  emailHandler,
-  passwordHandler,
-  submitHandler,
-  inputValid,
-}) {
-  const error = useSelector((state) => state.Error.error);
-  console.log(error);
+const Login = function ({ submitHandler }) {
+  const dispatch = useDispatch();
+  const notificaitonState = useSelector(
+    (state) => state.Notification.notification
+  );
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const emailChangeHandler = (e) => {
+    setEmail(e);
+  };
+  const passwordChangeHandler = (e) => {
+    setPassword(e);
+  };
+
+  const onPressHandler = (e) => {
+    if (!email || !password) {
+      dispatch(
+        showNotification({
+          status: `error`,
+          message: `Please fill the Input`,
+        })
+      );
+      return;
+    }
+
+    dispatch(hideNotification());
+
+    if (!email.includes("@")) {
+      dispatch(
+        showNotification({
+          status: `error`,
+          message: `Please fill the Input`,
+        })
+      );
+      return;
+    }
+    dispatch(hideNotification());
+
+    submitHandler({ email, password });
+  };
+
   return (
     <View style={styles.rootContainer}>
       <View style={styles.imageContainer}>
@@ -22,26 +62,24 @@ const Login = function ({
       </View>
       <Text style={styles.titleText}>Welcome Back </Text>
 
-      {inputValid && inputValid.status === `error` && (
-        <Text style={styles.errorMessage}>{inputValid.message}</Text>
-      )}
+      <View style={styles.errorContainer}>
+        <Text style={styles.errorText}>{notificaitonState?.message}</Text>
+      </View>
 
       <IconInput
         iconName={"email"}
         placeHolder={`@example.com`}
-        onChange={emailHandler}
+        onChange={emailChangeHandler}
         style={styles.extra}
-        inputValid={inputValid}
       />
       <IconInput
         iconName={"lock"}
         placeHolder={`Password`}
         EntryType={true}
-        onChange={passwordHandler}
+        onChange={passwordChangeHandler}
         style={styles.extra}
-        inputValid={inputValid}
       />
-      <IconButton style={styles.btn} onPress={submitHandler}>
+      <IconButton style={styles.btn} onPress={onPressHandler}>
         Login
       </IconButton>
     </View>
@@ -84,5 +122,16 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     backgroundColor: colors.green500,
     borderColor: colors.greenGrad,
+  },
+  errorContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 15,
+  },
+  errorText: {
+    fontStyle: "italic",
+    fontWeight: "600",
+    color: colors.pink700,
+    fontSize: 16,
   },
 });

@@ -1,54 +1,43 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import Login from "../components/Login";
-import { addError, removeError } from "../features/errorSlice";
+import { authenticate } from "../features/authSlice";
+import {
+  hideNotification,
+  showNotification,
+} from "../features/notificationSlice";
+import { authenticated } from "../helper/http-req";
 
 const LoginScreen = function (props) {
   const dispatch = useDispatch();
 
-  const [enteredEmail, setEnteredEmail] = useState();
-  const [enteredPassword, setEnteredPassword] = useState();
-  const [inputValid, setInputValid] = useState(null);
+  const onSubmitHandler = async (data) => {
+    const { email, password } = data;
 
-  const emailInputHandler = (e) => {
-    setInputValid(null);
-    setEnteredEmail(e);
-  };
-  const passwordInputHandler = (e) => {
-    setInputValid(null);
-    setEnteredPassword(e);
-  };
+    const response = await authenticated(email, password);
 
-  const onSubmitHandler = (e) => {
-    if (!enteredEmail || !enteredPassword) {
-      setInputValid({
-        status: "error",
-        message: `Please fill the form`,
-      });
+    if (
+      response?.error?.status === `Error` ||
+      response?.error?.status === `Fail`
+    ) {
+      dispatch(
+        showNotification({
+          status: `error`,
+          message: `Incorrect Email or Passwrod`,
+        })
+      );
       return;
     }
 
-    if (!enteredEmail.includes("@")) {
-      setInputValid({
-        status: `error`,
-        message: `Enter valid Email`,
-      });
+    dispatch(hideNotification());
+
+    if (response.status === `Success`) {
+      dispatch(authenticate(response.token));
       return;
     }
-
-    console.log({ enteredEmail, enteredPassword });
-    setEnteredEmail("");
-    setEnteredPassword("");
   };
 
-  return (
-    <Login
-      emailHandler={emailInputHandler}
-      passwordHandler={passwordInputHandler}
-      submitHandler={onSubmitHandler}
-      inputValid={inputValid}
-    />
-  );
+  return <Login submitHandler={onSubmitHandler} />;
 };
 
 export default LoginScreen;

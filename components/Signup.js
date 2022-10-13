@@ -100,7 +100,7 @@ const Signup = function ({ pressHandler }) {
         <View style={styles.titleContainer}>
           <View style={styles.imageContainer}>
             <Image
-              source={require("../assets/img/backpack-logo-trans.png")}
+              source={require("../assets/adaptive-icon.png")}
               style={styles.image}
             />
           </View>
@@ -175,22 +175,21 @@ const styles = StyleSheet.create({
     borderRadius: 22,
   },
   titleContainer: {
-    marginTop: 30,
+    marginTop: 10,
     flexDirection: "row",
     justifyContent: "flex-start",
-    marginBottom: 50,
+    marginBottom: 20,
   },
   imageContainer: {
-    width: 80,
-    height: 80,
+    width: 100,
+    height: 100,
   },
   image: {
     width: "100%",
     height: "100%",
   },
   textContainer: {
-    marginLeft: 6,
-    paddingTop: 15,
+    paddingTop: 22,
   },
   titleText: {
     textTransform: "uppercase",

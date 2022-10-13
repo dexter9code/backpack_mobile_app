@@ -16,4 +16,8 @@ export const colors = {
   cream500: "#FFECEF",
   greenGrad: "rgb(69,230,201)",
   red200: "#ffdad9",
+  green400: "#55c57a",
+  logoOrange: "#eb832c",
+  logoYellow: "#fcc45c",
+  logoPink: "#dc548b",
 };

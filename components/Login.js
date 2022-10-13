@@ -55,7 +55,10 @@ const Login = function ({ submitHandler }) {
   return (
     <View style={styles.rootContainer}>
       <View style={styles.imageContainer}>
-        <Image source={require("../assets/icon.png")} style={styles.image} />
+        <Image
+          source={require("../assets/adaptive-icon.png")}
+          style={styles.image}
+        />
       </View>
       <Text style={styles.titleText}>Welcome Back </Text>
 
@@ -93,8 +96,8 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   imageContainer: {
-    width: 90,
-    height: 90,
+    width: 100,
+    height: 100,
     marginTop: 50,
   },
   titleText: {

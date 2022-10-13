@@ -15,7 +15,10 @@ import { changeUri } from "../helper/changeUri";
 const Account = function ({ logoutHandler, userData }) {
   const { name, email, image } = userData;
 
-  const updatedUri = changeUri(image);
+  let updatedUri;
+  if (image.includes("http")) {
+    updatedUri = changeUri(image);
+  }
 
   const onPressHandler = (e) => {
     logoutHandler();
@@ -25,7 +28,15 @@ const Account = function ({ logoutHandler, userData }) {
     <View style={styles.rootContainer}>
       <View style={styles.profileImageContainer}>
         <View style={styles.imageContainer}>
-          <Image source={{ uri: updatedUri }} style={styles.image} />
+          {updatedUri && (
+            <Image source={{ uri: updatedUri }} style={styles.image} />
+          )}
+          {!updatedUri && (
+            <Image
+              source={require("../assets/img/default.jpg")}
+              style={styles.image}
+            />
+          )}
         </View>
         <Text style={styles.text}>{name}</Text>
         <Text>{email}</Text>

@@ -1,41 +1,73 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../components/Loading";
 import Login from "../components/Login";
 import { authenticate } from "../features/authSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   hideNotification,
   showNotification,
 } from "../features/notificationSlice";
 import { authenticated } from "../helper/http-req";
+import { addUser, alreadyUser } from "../features/authentication-slice";
+import AuthContext from "../context/AuthProvider";
 
-const LoginScreen = function (props) {
+const LoginScreen = function ({ navigation }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const authCtx = useContext(AuthContext);
   const dispatch = useDispatch();
+  const authee = useSelector((state) => state.Authorization.authentication);
 
   const onSubmitHandler = async (data) => {
+    setIsLoading(true);
+    dispatch(hideNotification());
     const { email, password } = data;
 
-    const response = await authenticated(email, password);
+    try {
+      const response = await authenticated(email, password);
+      if (
+        response?.error?.status === `Error` ||
+        response?.error?.status === `Fail`
+      ) {
+        dispatch(
+          showNotification({
+            status: `error`,
+            message: `Incorrect Email or Passwrod`,
+          })
+        );
+        setIsLoading(false);
+        return;
+      }
 
-    if (
-      response?.error?.status === `Error` ||
-      response?.error?.status === `Fail`
-    ) {
+      if (response.status === `Success`) {
+        await AsyncStorage.setItem("token", response.token);
+        // dispatch(
+        //   addUser({
+        //     name: response.data.name,
+        //     email: response.data.email,
+        //   })
+        // );
+        dispatch(alreadyUser());
+        authCtx.authenticate(response.token);
+
+        console.log(authee);
+        console.log(response.data);
+      }
+    } catch (error) {
       dispatch(
         showNotification({
           status: `error`,
-          message: `Incorrect Email or Passwrod`,
+          message: `${error.message}`,
         })
       );
-      return;
-    }
-
-    dispatch(hideNotification());
-
-    if (response.status === `Success`) {
-      dispatch(authenticate(response.token));
+      setIsLoading(false);
       return;
     }
   };
+
+  // if (isLoading) {
+  //   return <Loading />;
+  // }
 
   return <Login submitHandler={onSubmitHandler} />;
 };

@@ -12,7 +12,7 @@ const AuthStack = function () {
       initialRouteName="welcome"
       screenOptions={{
         headerShown: false,
-        contentStyle: { backgroundColor: colors.white600 },
+        contentStyle: { backgroundColor: "#f7f7f7" },
       }}
     >
       <Stack.Screen

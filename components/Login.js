@@ -55,10 +55,7 @@ const Login = function ({ submitHandler }) {
   return (
     <View style={styles.rootContainer}>
       <View style={styles.imageContainer}>
-        <Image
-          source={require("../assets/img/backpack-logo-trans.png")}
-          style={styles.image}
-        />
+        <Image source={require("../assets/icon.png")} style={styles.image} />
       </View>
       <Text style={styles.titleText}>Welcome Back </Text>
 
@@ -96,15 +93,15 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   imageContainer: {
-    width: 80,
-    height: 80,
+    width: 90,
+    height: 90,
     marginTop: 50,
   },
   titleText: {
-    marginBottom: 50,
+    marginBottom: 30,
     fontWeight: "bold",
-    textTransform: "capitalize",
-    fontSize: 18,
+    textTransform: "uppercase",
+    fontSize: 20,
     color: colors.green500,
   },
   errorMessage: {

@@ -11,7 +11,11 @@ import AccountDetails from "./other/AccountDetails";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { colors } from "./../constants/colors";
 
-const Account = function (props) {
+const Account = function ({ logoutHandler }) {
+  const onPressHandler = (e) => {
+    logoutHandler();
+  };
+
   return (
     <View style={styles.rootContainer}>
       <View style={styles.profileImageContainer}>
@@ -22,7 +26,7 @@ const Account = function (props) {
           />
         </View>
         <Text style={styles.text}>Mona Sax</Text>
-        <Text>doomdexter07@hotmail.com</Text>
+        <Text>testUser107@hotmail.com</Text>
       </View>
       <AccountDetails />
       <Pressable
@@ -30,6 +34,7 @@ const Account = function (props) {
           styles.buttonContainer,
           pressed && styles.preesed,
         ]}
+        onPress={onPressHandler}
       >
         <Text style={styles.iconText}>Logout</Text>
         <MaterialCommunityIcons

@@ -99,6 +99,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     overflow: "hidden",
     elevation: 3,
+    shadowColor: colors.dodgerBlue700,
+    shadowRadius: 6,
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.5,
   },
   imageContainer: {
     width: "100%",

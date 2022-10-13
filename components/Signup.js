@@ -175,9 +175,10 @@ const styles = StyleSheet.create({
     borderRadius: 22,
   },
   titleContainer: {
+    marginTop: 30,
     flexDirection: "row",
     justifyContent: "flex-start",
-    marginBottom: 30,
+    marginBottom: 50,
   },
   imageContainer: {
     width: 80,

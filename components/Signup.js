@@ -170,8 +170,8 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "100%",
-    borderColor: colors.dodgerBlue500,
-    backgroundColor: colors.dodgerBlue700,
+    borderColor: colors.white500,
+    backgroundColor: colors.logoOrange,
     borderRadius: 22,
   },
   titleContainer: {

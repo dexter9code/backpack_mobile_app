@@ -7,6 +7,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { setToken } from "../features/authSlice";
 import { alreadyUser } from "../features/authentication-slice";
 import AuthContext from "../context/AuthProvider";
+import { getCurrentUserData } from "../helper/http-req";
 
 const AppStack = function () {
   const auth = useSelector((state) => state.Authorization.authentication);
@@ -23,7 +24,13 @@ const AppStack = function () {
 
     if (token) {
       // dispatch(alreadyUser());
+      const user = await getCurrentUserData(token);
       authCtx.authenticate(token);
+      authCtx.updatedUser({
+        name: user.data.currentUser.name,
+        email: user.data.currentUser.email,
+        photo: user.data.currentUser.photo,
+      });
     }
   };
 

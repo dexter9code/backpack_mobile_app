@@ -122,8 +122,8 @@ const styles = StyleSheet.create({
   btn: {
     width: "100%",
     borderRadius: 30,
-    backgroundColor: colors.green500,
-    borderColor: colors.greenGrad,
+    backgroundColor: colors.logoPink,
+    borderColor: colors.green600,
   },
   errorContainer: {
     justifyContent: "center",

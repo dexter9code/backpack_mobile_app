@@ -6,7 +6,7 @@ export const MENU_ITEMS = [
     title: "Settings",
     icon: {
       name: "account-settings",
-      backgroundColor: colors.greenGrad,
+      backgroundColor: colors.gray500,
       type: "AntDesign",
     },
   },
@@ -15,7 +15,7 @@ export const MENU_ITEMS = [
     title: "Wallet",
     icon: {
       name: "wallet-outline",
-      backgroundColor: colors.greenGrad,
+      backgroundColor: colors.gray500,
     },
   },
   {
@@ -23,7 +23,7 @@ export const MENU_ITEMS = [
     title: "Saved",
     icon: {
       name: "bookmark",
-      backgroundColor: colors.greenGrad,
+      backgroundColor: colors.gray500,
     },
   },
   {
@@ -31,7 +31,7 @@ export const MENU_ITEMS = [
     title: "messages",
     icon: {
       name: "message-text-outline",
-      backgroundColor: colors.greenGrad,
+      backgroundColor: colors.gray500,
     },
   },
 ];

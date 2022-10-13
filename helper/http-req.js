@@ -16,3 +16,14 @@ export async function createUser(name, email, password, confirmPassword) {
   const data = await res.data;
   return data;
 }
+
+export async function getCurrentUserData(token) {
+  const res = await apiClinet.get(`/user/me`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+
+  const data = await res.data;
+  return data;
+}

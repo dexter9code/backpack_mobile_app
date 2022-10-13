@@ -12,7 +12,7 @@ const TourStack = function () {
   return (
     <Stack.Navigator
       screenOptions={({ navigation }) => ({
-        headerStyle: { backgroundColor: colors.greenGrad },
+        headerStyle: { backgroundColor: colors.green500 },
         headerTintColor: colors.white600,
         contentStyle: { backgroundColor: colors.white600 },
         headerBackVisible: true,

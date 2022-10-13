@@ -1,7 +1,8 @@
 import { Image, View, StyleSheet, FlatList, Text } from "react-native";
 import Sperator from "./Sperator";
 import { MENU_ITEMS } from "./../../data/menu-item";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { colors } from "./../../constants/colors";
 
 const AccountDetails = function () {
   return (
@@ -20,11 +21,7 @@ const AccountDetails = function () {
               />
               <Text style={styles.title}>{item.title}</Text>
             </View>
-            <MaterialCommunityIcons
-              name="menu-right-outline"
-              color={"dodgerblue"}
-              size={30}
-            />
+            <Feather name="chevron-right" color={colors.gray300} size={26} />
           </View>
         )}
       />
@@ -54,5 +51,6 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     textTransform: "uppercase",
     paddingHorizontal: 12,
+    color: "#000",
   },
 });

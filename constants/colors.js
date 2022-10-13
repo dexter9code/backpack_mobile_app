@@ -20,4 +20,8 @@ export const colors = {
   logoOrange: "#eb832c",
   logoYellow: "#fcc45c",
   logoPink: "#dc548b",
+  cherryRed: "#D2042D",
+  red500: "#DC143C",
+  green600: "#7dd56f",
+  green700: "#28b487",
 };

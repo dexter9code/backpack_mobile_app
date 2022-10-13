@@ -10,8 +10,13 @@ import {
 import AccountDetails from "./other/AccountDetails";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { colors } from "./../constants/colors";
+import { changeUri } from "../helper/changeUri";
 
-const Account = function ({ logoutHandler }) {
+const Account = function ({ logoutHandler, userData }) {
+  const { name, email, image } = userData;
+
+  const updatedUri = changeUri(image);
+
   const onPressHandler = (e) => {
     logoutHandler();
   };
@@ -20,13 +25,10 @@ const Account = function ({ logoutHandler }) {
     <View style={styles.rootContainer}>
       <View style={styles.profileImageContainer}>
         <View style={styles.imageContainer}>
-          <Image
-            source={require("../assets/monica.jpg")}
-            style={styles.image}
-          />
+          <Image source={{ uri: updatedUri }} style={styles.image} />
         </View>
-        <Text style={styles.text}>Mona Sax</Text>
-        <Text>testUser107@hotmail.com</Text>
+        <Text style={styles.text}>{name}</Text>
+        <Text>{email}</Text>
       </View>
       <AccountDetails />
       <Pressable
@@ -40,7 +42,7 @@ const Account = function ({ logoutHandler }) {
         <MaterialCommunityIcons
           name="logout"
           size={24}
-          color={"blue"}
+          color={colors.red500}
           style={styles.icon}
         />
       </Pressable>
@@ -59,6 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 10,
+    marginTop: 15,
   },
   imageContainer: {
     width: 90,
@@ -80,11 +83,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
-    borderRadius: 16,
+    borderRadius: 30,
     padding: 8,
     marginHorizontal: 8,
     marginVertical: 14,
-    backgroundColor: colors.greenGrad,
+    backgroundColor: colors.logoYellow,
+    borderColor: colors.white500,
   },
   icon: {
     marginLeft: 10,
@@ -92,7 +96,7 @@ const styles = StyleSheet.create({
   iconText: {
     textTransform: "uppercase",
     fontWeight: "bold",
-    color: colors.white600,
+    color: colors.cherryRed,
   },
   preesed: {
     opacity: 0.8,

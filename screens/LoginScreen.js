@@ -49,9 +49,11 @@ const LoginScreen = function ({ navigation }) {
         // );
         dispatch(alreadyUser());
         authCtx.authenticate(response.token);
-
-        console.log(authee);
-        console.log(response.data);
+        authCtx.updatedUser({
+          name: response.data.name,
+          email: response.data.email,
+          photo: response.data.photo,
+        });
       }
     } catch (error) {
       dispatch(
@@ -65,9 +67,9 @@ const LoginScreen = function ({ navigation }) {
     }
   };
 
-  // if (isLoading) {
-  //   return <Loading />;
-  // }
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return <Login submitHandler={onSubmitHandler} />;
 };

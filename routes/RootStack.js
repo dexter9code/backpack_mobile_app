@@ -21,7 +21,7 @@ const RootStack = function () {
             return <Fontisto name="world-o" size={size} color={color} />;
           },
           title: `Tours`,
-          tabBarActiveBackgroundColor: colors.greenGrad,
+          tabBarActiveBackgroundColor: colors.green700,
           tabBarActiveTintColor: colors.white600,
         }}
       />
@@ -29,7 +29,7 @@ const RootStack = function () {
         name="Account"
         component={AccountScreen}
         options={{
-          tabBarActiveBackgroundColor: colors.greenGrad,
+          tabBarActiveBackgroundColor: colors.green700,
           tabBarIcon: ({ color, size }) => {
             return (
               <MaterialCommunityIcons

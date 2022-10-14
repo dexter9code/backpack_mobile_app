@@ -40,8 +40,8 @@ const AppStack = function () {
 
   return (
     <NavigationContainer>
-      {authCtx.isAuthenticated && <RootStack />}
-      {!authCtx.isAuthenticated && <AuthStack />}
+      {/* {authCtx.isAuthenticated && <RootStack />}
+      {!authCtx.isAuthenticated && <AuthStack />} */}
       {/* <AuthStack /> */}
       {/* <RootStack /> */}
     </NavigationContainer>

@@ -2,14 +2,13 @@ import { useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../components/Loading";
 import Login from "../components/Login";
-import { authenticate } from "../features/authSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   hideNotification,
   showNotification,
 } from "../features/notificationSlice";
 import { authenticated } from "../helper/http-req";
-import { addUser, alreadyUser } from "../features/authentication-slice";
+import { alreadyUser } from "../features/authentication-slice";
 import AuthContext from "../context/AuthProvider";
 
 const LoginScreen = function ({ navigation }) {

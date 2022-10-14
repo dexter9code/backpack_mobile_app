@@ -7,6 +7,7 @@ import AuthStack from "./routes/Auth";
 import AppStack from "./routes/AppStack";
 import Loading from "./components/Loading";
 import { AuthContextProvider } from "./context/AuthProvider";
+import SettingScreen from "./screens/SettingScreen";
 
 export default function App() {
   return (
@@ -14,7 +15,8 @@ export default function App() {
       <StatusBar style="dark" />
       <Provider store={store}>
         <AuthContextProvider>
-          <AppStack />
+          {/* <AppStack /> */}
+          <SettingScreen />
         </AuthContextProvider>
         {/* <NavigationContainer>
           <RootStack />

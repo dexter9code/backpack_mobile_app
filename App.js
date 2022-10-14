@@ -15,8 +15,7 @@ export default function App() {
       <StatusBar style="dark" />
       <Provider store={store}>
         <AuthContextProvider>
-          {/* <AppStack /> */}
-          <SettingScreen />
+          <AppStack />
         </AuthContextProvider>
         {/* <NavigationContainer>
           <RootStack />

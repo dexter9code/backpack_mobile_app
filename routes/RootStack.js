@@ -3,6 +3,7 @@ import TourStack from "./TourStack";
 import { Fontisto, MaterialCommunityIcons } from "@expo/vector-icons";
 import AccountScreen from "./../screens/AccountScreen";
 import { colors } from "./../constants/colors";
+import AccountStack from "./AccountStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -27,7 +28,7 @@ const RootStack = function () {
       />
       <Tab.Screen
         name="Account"
-        component={AccountScreen}
+        component={AccountStack}
         options={{
           tabBarActiveBackgroundColor: colors.green700,
           tabBarIcon: ({ color, size }) => {

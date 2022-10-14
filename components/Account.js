@@ -66,13 +66,13 @@ export default Account;
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 50,
+    marginTop: 8,
+    // paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 50,
   },
   profileImageContainer: {
     justifyContent: "center",
     alignItems: "center",
-    padding: 10,
-    marginTop: 15,
+    padding: 2,
   },
   imageContainer: {
     width: 90,

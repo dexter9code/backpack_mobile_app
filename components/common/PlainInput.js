@@ -6,6 +6,7 @@ import {
   TextInput,
   Button,
   Pressable,
+  ScrollView,
 } from "react-native";
 import { colors } from "./../../constants/colors";
 
@@ -22,29 +23,31 @@ const PlainInput = function ({
 }) {
   return (
     <View style={[styles.inputContainer]}>
-      <Text style={styles.labelText}>{labelTitle}</Text>
-      <View style={styles.innerContianer}>
-        <TextInput
-          defaultValue={defaultTitle}
-          style={styles.input}
-          placeholder={inputPlaceholder}
-          editable={isEditable}
-          onChangeText={onchangeHandler}
-          autoCapitalize={"none"}
-          autoCorrect={false}
-          secureTextEntry={secureType}
-        />
-        {showButton && (
-          <View style={styles.btnContainer}>
-            <Pressable
-              style={({ pressed }) => pressed && styles.pressed}
-              onPress={updateHandler}
-            >
-              <Text style={styles.btnText}>update</Text>
-            </Pressable>
-          </View>
-        )}
-      </View>
+      <ScrollView>
+        <Text style={styles.labelText}>{labelTitle}</Text>
+        <View style={styles.innerContianer}>
+          <TextInput
+            defaultValue={defaultTitle}
+            style={styles.input}
+            placeholder={inputPlaceholder}
+            editable={isEditable}
+            onChangeText={onchangeHandler}
+            autoCapitalize={"none"}
+            autoCorrect={false}
+            secureTextEntry={secureType}
+          />
+          {showButton && (
+            <View style={styles.btnContainer}>
+              <Pressable
+                style={({ pressed }) => pressed && styles.pressed}
+                onPress={updateHandler}
+              >
+                <Text style={styles.btnText}>update</Text>
+              </Pressable>
+            </View>
+          )}
+        </View>
+      </ScrollView>
     </View>
   );
 };

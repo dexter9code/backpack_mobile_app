@@ -27,9 +27,9 @@ const AppStack = function () {
       const user = await getCurrentUserData(token);
       authCtx.authenticate(token);
       authCtx.updatedUser({
-        name: user.data.currentUser.name,
-        email: user.data.currentUser.email,
-        photo: user.data.currentUser.photo,
+        name: user?.data.currentUser.name,
+        email: user?.data.currentUser.email,
+        photo: user?.data.currentUser.photo,
       });
     }
   };
@@ -40,8 +40,8 @@ const AppStack = function () {
 
   return (
     <NavigationContainer>
-      {/* {authCtx.isAuthenticated && <RootStack />}
-      {!authCtx.isAuthenticated && <AuthStack />} */}
+      {authCtx.isAuthenticated && <RootStack />}
+      {!authCtx.isAuthenticated && <AuthStack />}
       {/* <AuthStack /> */}
       {/* <RootStack /> */}
     </NavigationContainer>

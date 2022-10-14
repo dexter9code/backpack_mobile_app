@@ -9,6 +9,7 @@ export const MENU_ITEMS = [
       backgroundColor: colors.gray500,
       type: "AntDesign",
     },
+    tragetScreen: "setting",
   },
   {
     id: 35,

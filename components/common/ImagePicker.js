@@ -13,11 +13,14 @@ import {
   Image,
   Pressable,
   Vibration,
+  Platform,
 } from "react-native";
 import { colors } from "./../../constants/colors";
+import { changeUri } from "../../helper/changeUri";
 
-const ImagePicker = function () {
+const ImagePicker = function ({ currentUserImage, updateImgHandler }) {
   const [pickedImage, setPickedImage] = useState();
+
   const [libraryPermissionInformation, requestPermission] =
     useMediaLibraryPermissions();
 
@@ -54,15 +57,32 @@ const ImagePicker = function () {
     setPickedImage(image.uri);
   }
 
-  let previewImage = (
-    <Image
-      source={require("../../assets/img/default.jpg")}
-      style={styles.image}
-    />
-  );
+  let previewImage;
+  let updatedUri;
+  if (currentUserImage.includes("http")) {
+    updatedUri = changeUri(currentUserImage);
+  }
+
+  if (!currentUserImage.includes("http")) {
+    previewImage = (
+      <Image
+        source={require("../../assets/img/default.jpg")}
+        style={styles.image}
+      />
+    );
+  } else {
+    previewImage = <Image source={{ uri: updatedUri }} style={styles.image} />;
+  }
 
   if (pickedImage) {
     previewImage = <Image source={{ uri: pickedImage }} style={styles.image} />;
+  }
+
+  function submitImageHandler() {
+    if (!pickedImage) return;
+
+    updateImgHandler(pickedImage);
+    Vibration.vibrate();
   }
 
   return (
@@ -79,7 +99,7 @@ const ImagePicker = function () {
 
       <Pressable
         style={({ pressed }) => pressed && styles.pressed}
-        onPress={() => Vibration.vibrate()}
+        onPress={submitImageHandler}
       >
         <Text style={styles.btnText}>Update</Text>
       </Pressable>

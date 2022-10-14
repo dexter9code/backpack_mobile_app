@@ -1,12 +1,12 @@
 import { useState } from "react";
 import {
-  Modal,
   Platform,
   StatusBar,
   StyleSheet,
   Text,
   View,
   KeyboardAvoidingView,
+  ScrollView,
 } from "react-native";
 import { colors } from "./../constants/colors";
 import NormalButton from "./common/NormalButton";
@@ -18,7 +18,12 @@ import {
 } from "../features/notificationSlice";
 import ImagePicker from "./common/ImagePicker";
 
-const Setting = function () {
+const Setting = function ({
+  nameHandler,
+  user,
+  imageHandler,
+  passwordHandler,
+}) {
   const dispatch = useDispatch();
   const notificationState = useSelector(
     (state) => state.Notification.notification
@@ -36,7 +41,7 @@ const Setting = function () {
 
   const updateUserNameHandler = (e) => {
     if (!userName) return;
-    console.log(userName);
+    nameHandler(userName);
   };
 
   const onSumbmitHandler = () => {
@@ -62,29 +67,36 @@ const Setting = function () {
       return;
     }
 
-    console.log({ currentPassword, newPassword, confirmNewPassword });
+    passwordHandler({
+      currentPassword,
+      password: newPassword,
+      confirmPassword: confirmNewPassword,
+    });
   };
 
   return (
-    <Modal>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.rootContainer}
-      >
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.rootContainer}
+    >
+      <ScrollView>
         <View style={styles.container}>
-          <ImagePicker />
+          <ImagePicker
+            currentUserImage={user.image}
+            updateImgHandler={imageHandler}
+          />
         </View>
         <View style={styles.container}>
           <PlainInput
             labelTitle={`email`}
-            defaultTitle={`admin@io.com`}
+            defaultTitle={user.email}
             style={styles.container}
             showButton={false}
             isEditable={false}
           />
           <PlainInput
             labelTitle={`name`}
-            defaultTitle={`rudy`}
+            defaultTitle={user.name}
             style={styles.container}
             showButton={true}
             onchangeHandler={onUsernameChangeHandler}
@@ -123,8 +135,8 @@ const Setting = function () {
             </NormalButton>
           </View>
         </View>
-      </KeyboardAvoidingView>
-    </Modal>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -134,7 +146,7 @@ const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
     alignItems: "center",
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 50,
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 20,
   },
   container: {
     width: "100%",

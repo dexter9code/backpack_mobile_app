@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
     alignItems: "center",
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 20,
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 70,
   },
   container: {
     width: "100%",

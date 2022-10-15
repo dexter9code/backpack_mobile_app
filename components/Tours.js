@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FlatList, View } from "react-native";
 import { getAllTours } from "../helper/tour-http";
 import Card from "./common/Card";
+import Error404 from "./other/404";
 
 const Tours = function (props) {
   const [tours, setTours] = useState();
@@ -14,6 +15,10 @@ const Tours = function (props) {
   useEffect(() => {
     fetchTours();
   }, []);
+
+  if (!tours) {
+    return <Error404 />;
+  }
 
   return (
     <FlatList

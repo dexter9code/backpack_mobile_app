@@ -6,6 +6,7 @@ import {
   Platform,
   StatusBar,
   Pressable,
+  Button,
 } from "react-native";
 import AccountDetails from "./other/AccountDetails";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -66,7 +67,7 @@ export default Account;
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    marginTop: 8,
+    marginTop: Platform.OS === "android" ? 8 : 10,
     // paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 50,
   },
   profileImageContainer: {
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     padding: 8,
     marginHorizontal: 8,
-    marginVertical: 14,
+    marginVertical: Platform.OS === "android" ? 14 : 20,
     backgroundColor: colors.logoYellow,
     borderColor: colors.white500,
   },

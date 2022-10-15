@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Offline from "../components/Offine";
 import Tour from "../components/Tour";
 import { getSingleTour } from "../helper/tour-http";
 
@@ -16,7 +17,12 @@ const TourScreen = function ({ route }) {
     fectchTour();
   }, []);
 
-  return <Tour tourData={tour} />;
+  return (
+    <>
+      <Offline />
+      <Tour tourData={tour} />
+    </>
+  );
 };
 
 export default TourScreen;

@@ -13,4 +13,8 @@ We also tap into native device features like `localStorage` of the phone to stor
 <img src='https://github.com/dexter9code/backpack_mobile_app/blob/photo/github%20img.png' width='100%' heigth=500 >
 
 
+## updates
+
+`Added Settings Screen`
+
 ## Caution `not all links in Account Screen works`
